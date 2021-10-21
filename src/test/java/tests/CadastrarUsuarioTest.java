@@ -7,12 +7,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utils.Utils;
 
 public class CadastrarUsuarioTest {
 
 	private ChromeDriver driver;
+	private Utils util;
 
 	@Before
 	public void inicializa() {
@@ -23,15 +24,14 @@ public class CadastrarUsuarioTest {
 	@Test
 	public void cadastrarUsuario() {
 		
-		WebDriverWait wait = new
-		WebDriverWait(driver, 5);
+		util = new Utils(driver);
 
 		driver.get("http://automationpractice.com/index.php");
 
 		driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a")).click();
-		driver.findElement(By.id("email_create")).sendKeys("everisbootcamp@qabeginner.com");
+		driver.findElement(By.id("email_create")).sendKeys("everisbootcampcassia202@qabeginner.com");
 		driver.findElement(By.cssSelector("button[id='SubmitCreate'] span")).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("id_gender2")));
+		util.esperaExplicitaPorId("id_gender2");
 		driver.findElement(By.id("id_gender2")).click();
 		driver.findElement(By.id("customer_firstname")).sendKeys("July");
 		driver.findElement(By.id("customer_lastname")).sendKeys("Sanders");
@@ -48,7 +48,7 @@ public class CadastrarUsuarioTest {
 		driver.findElement(By.id("alias")).clear();
 		driver.findElement(By.id("alias")).sendKeys("Address 1");
 		driver.findElement(By.id("submitAccount")).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[title='Orders'] span"))); 
+		util.esperaExplicitaPorCss("a[title='Orders'] span");
 		WebElement validaTexto = driver.findElement(By.cssSelector("a[title='Orders'] span"));
 		Assert.assertEquals("ORDER HISTORY AND DETAILS", validaTexto.getText());
 		

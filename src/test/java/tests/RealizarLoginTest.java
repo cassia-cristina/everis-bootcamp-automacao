@@ -5,12 +5,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utils.Utils;
 
 public class RealizarLoginTest {
 
 	private ChromeDriver driver;
+	private Utils util;
 
 	@Before
 	public void inicializa() {
@@ -21,8 +22,7 @@ public class RealizarLoginTest {
 	@Test
 	public void logar() {
 		
-		WebDriverWait wait = new
-		WebDriverWait(driver, 5);
+		util = new Utils(driver);
 
 		driver.get("http://automationpractice.com/index.php");
 
@@ -30,8 +30,7 @@ public class RealizarLoginTest {
 		driver.findElement(By.id("email")).sendKeys("everisbootcamp@qabeginner.com");
 		driver.findElement(By.id("passwd")).sendKeys("QA@everis213");
 		driver.findElement(By.name("SubmitLogin")).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[title='Orders'] span"))); 
-
+		util.esperaExplicitaPorCss("a[title='Orders'] span");
 	}
 
 	@After

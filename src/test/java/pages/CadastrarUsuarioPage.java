@@ -1,10 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import utils.Utils;
 
 public class CadastrarUsuarioPage {
@@ -17,16 +13,14 @@ public class CadastrarUsuarioPage {
 		this.driver = driver;
 	}
 
-	public void cadastrarusuario() {
-
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+	public void cadastrarusuario() {		
 		
 		driver.get("http://automationpractice.com/index.php");
 
 		util.clickPorCss("#header > div.nav > div > div > nav > div.header_user_info > a");
-		util.preencheCampoPorId("email_create", "everisbootcamp@qabeginner.com");
+		util.preencheCampoPorId("email_create", "everisbootcamp-cassia201@qabeginner.com");
 		util.clickPorCss("button[id='SubmitCreate'] span");
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("id_gender2")));
+		util.esperaExplicitaPorId("id_gender2");
 		util.clickPorId("id_gender2");
 		util.preencheCampoPorId("customer_firstname", "July");
 		util.preencheCampoPorId("customer_lastname", "Sanders");

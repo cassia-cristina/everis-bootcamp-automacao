@@ -8,15 +8,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pages.RealizarLoginPage;
+import utils.Utils;
 
 public class RealizarLoginPageTest {
 	
 	private WebDriver driver;
 	private RealizarLoginPage realizarLoginPage;
+	private Utils util;
 	
 	@Before
 	public void inicializa() {
@@ -28,10 +28,10 @@ public class RealizarLoginPageTest {
 	@Test
 	public void realizarlogin() {
 		
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		util = new Utils(driver);
 		
 		realizarLoginPage.RealizarLogin();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[title='Orders'] span"))); 
+		util.esperaExplicitaPorCss("a[title='Orders'] span");
 		WebElement validaTexto = driver.findElement(By.cssSelector("a[title='Orders'] span"));
 		Assert.assertEquals("ORDER HISTORY AND DETAILS", validaTexto.getText());
 	}

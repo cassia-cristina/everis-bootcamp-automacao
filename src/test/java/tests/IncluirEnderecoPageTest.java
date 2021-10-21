@@ -8,29 +8,31 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import pages.RealizarLoginPage;
+import pages.IncluirEnderecoPage;
 import utils.Utils;
 
-public class RealizarLoginPageTest {
+public class IncluirEnderecoPageTest {
 	
 	private WebDriver driver;
-	private RealizarLoginPage realizarLoginPage;
+	private IncluirEnderecoPage incluirEnderecoPage;
 	private Utils util;
 	
 	@Before
 	public void inicializa() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver();
-		realizarLoginPage = new RealizarLoginPage(driver);
+		incluirEnderecoPage = new IncluirEnderecoPage(driver);
 		util = new Utils(driver);
 	}
 	
+
 	@Test
-	public void realizarlogin() {
-		realizarLoginPage.RealizarLogin();
-		util.esperaExplicitaPorCss("a[title='Orders'] span");
-		String validaTexto = util.getTextByCss("a[title='Orders'] span");
-		Assert.assertEquals("ORDER HISTORY AND DETAILS", validaTexto);
+	public void incluirNovoEndereco() {
+		incluirEnderecoPage.incluirEndereco();
+		util.esperaExplicitaPorPath("//*[@class=\"last_item alternate_item box\"]/li/h3");
+		String validaTexto = util.getTextByPath("//*[@class=\"last_item alternate_item box\"]/li/h3");
+		Assert.assertEquals("MY ADDRESS", validaTexto);
+		
 	}
 	
 	@After

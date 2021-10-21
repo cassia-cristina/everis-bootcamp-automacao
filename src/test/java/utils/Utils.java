@@ -38,13 +38,40 @@ public class Utils {
 
 		driver.findElement(By.id(id_campo)).click();
 	}
-
-	public void esperaExplicitaPorId(String element) {
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(element)));
+	
+	public void clickPorPath(String path_campo) {
+		
+		driver.findElement(By.xpath(path_campo)).click();
 	}
 	
-	public void esperaExplicitaPorCss(String element) {
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(element)));
+	public String getTextByPath(String path_campo) {
+		
+		return driver.findElement(By.xpath(path_campo)).getText();
+	}
+	
+	public String getTextById(String id_campo) {
+		
+		return driver.findElement(By.id(id_campo)).getText();
+	}
+	
+	public String getTextByCss(String css_campo) {
+		
+		return driver.findElement(By.cssSelector(css_campo)).getText();
+	}
+
+	public void esperaExplicitaPorId(String id_campo) {
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(id_campo)));
+	}
+	
+	public void esperaExplicitaPorCss(String css_campo) {
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(css_campo)));
+	}
+	
+	public void esperaExplicitaPorPath(String path_campo) {
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(path_campo)));
 	}
 
 }

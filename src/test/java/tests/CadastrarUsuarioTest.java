@@ -1,11 +1,11 @@
 package tests;
 
 import org.junit.After;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import utils.Utils;
@@ -19,13 +19,12 @@ public class CadastrarUsuarioTest {
 	public void inicializa() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver();
+		util = new Utils(driver);
 	}
 
 	@Test
 	public void cadastrarUsuario() {
 		
-		util = new Utils(driver);
-
 		driver.get("http://automationpractice.com/index.php");
 
 		driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a")).click();
@@ -49,8 +48,8 @@ public class CadastrarUsuarioTest {
 		driver.findElement(By.id("alias")).sendKeys("Address 1");
 		driver.findElement(By.id("submitAccount")).click();
 		util.esperaExplicitaPorCss("a[title='Orders'] span");
-		WebElement validaTexto = driver.findElement(By.cssSelector("a[title='Orders'] span"));
-		Assert.assertEquals("ORDER HISTORY AND DETAILS", validaTexto.getText());
+		String validaTexto = util.getTextByCss("a[title='Orders'] span");
+		Assert.assertEquals("ORDER HISTORY AND DETAILS", validaTexto);
 		
 	}
 

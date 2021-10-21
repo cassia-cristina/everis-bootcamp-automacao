@@ -17,12 +17,11 @@ public class RealizarLoginTest {
 	public void inicializa() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver();
+		util = new Utils(driver);
 	}
 
 	@Test
 	public void logar() {
-		
-		util = new Utils(driver);
 
 		driver.get("http://automationpractice.com/index.php");
 

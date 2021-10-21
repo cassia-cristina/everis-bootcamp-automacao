@@ -1,11 +1,10 @@
 package tests;
 
 import org.junit.After;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import utils.Utils;
@@ -46,8 +45,8 @@ public class CadastrarUsuarioUtilsTest {
 		util.preencheCampoPorId("phone_mobile", "9999999999");
 		util.clickPorId("submitAccount");
 		util.esperaExplicitaPorCss("a[title='Orders'] span");
-		WebElement validaTexto = driver.findElement(By.cssSelector("a[title='Orders'] span"));
-		Assert.assertEquals("ORDER HISTORY AND DETAILS", validaTexto.getText());
+		String validaTexto = util.getTextByCss("a[title='Orders'] span");
+		Assert.assertEquals("ORDER HISTORY AND DETAILS", validaTexto);
 
 	}
 

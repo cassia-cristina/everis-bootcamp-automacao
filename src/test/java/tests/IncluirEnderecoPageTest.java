@@ -9,12 +9,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import pages.IncluirEnderecoPage;
+import pages.RealizarLoginPage;
 import utils.Utils;
 
 public class IncluirEnderecoPageTest {
 	
 	private WebDriver driver;
 	private IncluirEnderecoPage incluirEnderecoPage;
+	private RealizarLoginPage realizarLoginPage;
 	private Utils util;
 	
 	@Before
@@ -22,12 +24,14 @@ public class IncluirEnderecoPageTest {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		incluirEnderecoPage = new IncluirEnderecoPage(driver);
+		realizarLoginPage = new RealizarLoginPage(driver);
 		util = new Utils(driver);
 	}
 	
 
 	@Test
 	public void incluirNovoEndereco() {
+		realizarLoginPage.RealizarLogin();
 		incluirEnderecoPage.incluirEndereco();
 		util.esperaExplicitaPorPath("//*[@class=\"last_item alternate_item box\"]/li/h3");
 		String validaTexto = util.getTextByPath("//*[@class=\"last_item alternate_item box\"]/li/h3");

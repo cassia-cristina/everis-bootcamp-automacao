@@ -8,16 +8,12 @@ import utils.Utils;
 public class IncluirEnderecoPage {
 	
 	private Utils util;
-	private RealizarLoginPage realizarLoginPage;
 	
 	public IncluirEnderecoPage(WebDriver driver) {
 		util = new Utils(driver);
-		realizarLoginPage = new RealizarLoginPage(driver);
 	}
 	
 	public void incluirEndereco() {
-		
-		realizarLoginPage.RealizarLogin();
 		
 		util.clickPorPath("//a[@title=\"Addresses\"]");
 		util.clickPorPath("//*[@id=\"center_column\"]/div[2]/a");

@@ -29,7 +29,7 @@ public class CadastrarUsuarioTest {
 		driver.get("http://automationpractice.com/index.php");
 
 		driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div.header_user_info > a")).click();
-		driver.findElement(By.id("email_create")).sendKeys("everisbootcampcassia202@qabeginner.com");
+		driver.findElement(By.id("email_create")).sendKeys("everisbootcamp@qabeginner.com");
 		driver.findElement(By.cssSelector("button[id='SubmitCreate'] span")).click();
 		util.esperaExplicitaPorId("id_gender2");
 		driver.findElement(By.id("id_gender2")).click();
